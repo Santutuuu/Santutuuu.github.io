@@ -283,21 +283,30 @@
       </p>
     </div>
 
-    <div class="fade-up flex flex-col sm:flex-row gap-3 mb-6">
-      <input type="text" id="catalogo-buscador" placeholder="Buscar producto..." aria-label="Buscar producto"
-        class="flex-1 px-4 py-3 rounded-xl border border-black/10 bg-white text-[14px] text-ink placeholder-black/40 outline-none focus:border-black/30 transition-colors">
-      <select id="catalogo-filtro" aria-label="Filtrar por categoría"
-        class="px-4 py-3 rounded-xl border border-black/10 bg-white text-[14px] text-ink outline-none focus:border-black/30 transition-colors sm:w-64">
-        <option value="">Todas las categorías</option>
-      </select>
+    <div class="fade-up mb-10">
+      <button type="button" id="catalogo-toggle"
+        class="light-btn-primary font-semibold text-[14.5px] px-6 py-3.5 rounded-full inline-flex items-center justify-center gap-2">
+        Ver catálogo completo
+      </button>
     </div>
 
-    <div id="catalogo-subchips" class="fade-up flex flex-wrap gap-2 mb-6"></div>
+    <div id="catalogo-contenido" class="hidden">
+      <div class="flex flex-col sm:flex-row gap-3 mb-6">
+        <input type="text" id="catalogo-buscador" placeholder="Buscar producto..." aria-label="Buscar producto"
+          class="flex-1 px-4 py-3 rounded-xl border border-black/10 bg-white text-[14px] text-ink placeholder-black/40 outline-none focus:border-black/30 transition-colors">
+        <select id="catalogo-filtro" aria-label="Filtrar por categoría"
+          class="px-4 py-3 rounded-xl border border-black/10 bg-white text-[14px] text-ink outline-none focus:border-black/30 transition-colors sm:w-64">
+          <option value="">Todas las categorías</option>
+        </select>
+      </div>
 
-    <p id="catalogo-contador" class="fade-up text-[13px] text-black/45 mb-6"></p>
+      <div id="catalogo-subchips" class="flex flex-wrap gap-2 mb-6"></div>
 
-    <div id="catalogo-grid" class="fade-up in grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10"></div>
-    <p id="catalogo-vacio" class="hidden text-center text-black/45 py-16">No se encontraron productos.</p>
+      <p id="catalogo-contador" class="text-[13px] text-black/45 mb-6"></p>
+
+      <div id="catalogo-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10"></div>
+      <p id="catalogo-vacio" class="hidden text-center text-black/45 py-16">No se encontraron productos.</p>
+    </div>
 
     <div class="fade-up bg-ink text-smoke rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
       <div>
