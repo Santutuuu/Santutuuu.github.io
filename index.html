@@ -283,31 +283,21 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
-      <div class="fade-up bg-white rounded-2xl p-6 border border-black/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_20px_40px_-28px_rgba(0,0,0,0.25)]">
-        <p class="font-display font-700 text-[15px]" style="font-weight:700;">Fundas</p>
-        <p class="text-[13px] text-black/50 mt-1">Todos los estilos y modelos comunes</p>
-      </div>
-      <div class="fade-up bg-white rounded-2xl p-6 border border-black/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_20px_40px_-28px_rgba(0,0,0,0.25)]">
-        <p class="font-display font-700 text-[15px]" style="font-weight:700;">Vidrios templados</p>
-        <p class="text-[13px] text-black/50 mt-1">Protección de pantalla</p>
-      </div>
-      <div class="fade-up bg-white rounded-2xl p-6 border border-black/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_20px_40px_-28px_rgba(0,0,0,0.25)]">
-        <p class="font-display font-700 text-[15px]" style="font-weight:700;">Cargadores</p>
-        <p class="text-[13px] text-black/50 mt-1">Cables, fichas y cargadores rápidos</p>
-      </div>
-      <div class="fade-up bg-white rounded-2xl p-6 border border-black/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_20px_40px_-28px_rgba(0,0,0,0.25)]">
-        <p class="font-display font-700 text-[15px]" style="font-weight:700;">Auriculares</p>
-        <p class="text-[13px] text-black/50 mt-1">Con y sin cable</p>
-      </div>
-      <div class="fade-up bg-white rounded-2xl p-6 border border-black/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_20px_40px_-28px_rgba(0,0,0,0.25)]">
-        <p class="font-display font-700 text-[15px]" style="font-weight:700;">Blisters de accesorios</p>
-        <p class="text-[13px] text-black/50 mt-1">Soportes, adaptadores y más</p>
-      </div>
-      <div class="fade-up bg-white rounded-2xl p-6 border border-black/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_20px_40px_-28px_rgba(0,0,0,0.25)] flex items-center justify-center text-center">
-        <p class="text-[13px] text-black/50">Y más — preguntanos por lo que necesites</p>
-      </div>
+    <div class="fade-up flex flex-col sm:flex-row gap-3 mb-6">
+      <input type="text" id="catalogo-buscador" placeholder="Buscar producto..." aria-label="Buscar producto"
+        class="flex-1 px-4 py-3 rounded-xl border border-black/10 bg-white text-[14px] text-ink placeholder-black/40 outline-none focus:border-black/30 transition-colors">
+      <select id="catalogo-filtro" aria-label="Filtrar por categoría"
+        class="px-4 py-3 rounded-xl border border-black/10 bg-white text-[14px] text-ink outline-none focus:border-black/30 transition-colors sm:w-64">
+        <option value="">Todas las categorías</option>
+      </select>
     </div>
+
+    <div id="catalogo-subchips" class="fade-up flex flex-wrap gap-2 mb-6"></div>
+
+    <p id="catalogo-contador" class="fade-up text-[13px] text-black/45 mb-6"></p>
+
+    <div id="catalogo-grid" class="fade-up in grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10"></div>
+    <p id="catalogo-vacio" class="hidden text-center text-black/45 py-16">No se encontraron productos.</p>
 
     <div class="fade-up bg-ink text-smoke rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
       <div>
@@ -452,6 +442,8 @@
     observer.observe(el);
   });
 </script>
+
+<script src="catalogo.js"></script>
 
 </body>
 </html>
