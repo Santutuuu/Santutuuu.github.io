@@ -14,11 +14,32 @@
   const subchipsCont = document.getElementById("catalogo-subchips");
   const contador = document.getElementById("catalogo-contador");
   const vacio = document.getElementById("catalogo-vacio");
+  const toggleBtn = document.getElementById("catalogo-toggle");
+  const contenido = document.getElementById("catalogo-contenido");
 
   if (!grid) return;
 
   let categoriaActiva = "";
   let subcategoriaActiva = "";
+  let renderizado = false;
+
+  toggleBtn.textContent = `Ver catálogo completo (${PRODUCTOS.length})`;
+
+  toggleBtn.addEventListener("click", () => {
+    const abierto = !contenido.classList.contains("hidden");
+    if (abierto) {
+      contenido.classList.add("hidden");
+      toggleBtn.textContent = `Ver catálogo completo (${PRODUCTOS.length})`;
+      document.getElementById("catalogo").scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      contenido.classList.remove("hidden");
+      toggleBtn.textContent = "Ocultar catálogo";
+      if (!renderizado) {
+        renderizado = true;
+        render();
+      }
+    }
+  });
 
   const categorias = [...new Set(PRODUCTOS.map(p => p.categoria))].sort();
   categorias.forEach(cat => {
@@ -117,6 +138,4 @@
     clearTimeout(debounce);
     debounce = setTimeout(render, 150);
   });
-
-  render();
 })();
