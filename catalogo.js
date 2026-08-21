@@ -69,18 +69,33 @@
     return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(mensaje)}`;
   }
 
+  function bloqueImagen(producto) {
+    // Si el producto tiene "imagen" (URL), se muestra recortada en cuadrado (object-cover).
+    // Si no, se reserva el mismo espacio con un placeholder para que todas las tarjetas midan igual.
+    if (producto.imagen) {
+      return `<img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy"
+                class="w-full h-full object-cover">`;
+    }
+    return `<span class="text-[11px] text-black/30 font-medium">Foto próximamente</span>`;
+  }
+
   function crearTarjeta(producto) {
     const card = document.createElement("article");
-    card.className = "bg-white rounded-2xl p-6 border border-black/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_20px_40px_-28px_rgba(0,0,0,0.25)] flex flex-col gap-3";
+    card.className = "h-full bg-white rounded-2xl border border-black/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_20px_40px_-28px_rgba(0,0,0,0.25)] overflow-hidden flex flex-col";
 
     card.innerHTML = `
-      <span class="text-[11px] uppercase tracking-wider text-black/40 font-semibold">${producto.categoria}</span>
-      <h3 class="font-display text-[15px] leading-snug" style="font-weight:700;">${producto.nombre}</h3>
-      <p class="text-[13px] text-black/55 leading-relaxed flex-1">${producto.descripcion}</p>
-      <a href="${linkWhatsApp(producto.nombre)}" target="_blank" rel="noopener"
-         class="light-btn-primary text-[13px] font-semibold px-4 py-2.5 rounded-full inline-flex items-center justify-center gap-2">
-        Pedir por WhatsApp
-      </a>
+      <div class="aspect-square w-full bg-black/[0.035] flex items-center justify-center overflow-hidden">
+        ${bloqueImagen(producto)}
+      </div>
+      <div class="p-6 flex flex-col gap-3 flex-1">
+        <span class="text-[11px] uppercase tracking-wider text-black/40 font-semibold">${producto.categoria}</span>
+        <h3 class="font-display text-[15px] leading-snug line-clamp-2 min-h-[42px]" style="font-weight:700;">${producto.nombre}</h3>
+        <p class="text-[13px] text-black/55 leading-relaxed line-clamp-2 min-h-[38px] flex-1">${producto.descripcion}</p>
+        <a href="${linkWhatsApp(producto.nombre)}" target="_blank" rel="noopener"
+           class="light-btn-primary text-[13px] font-semibold px-4 py-2.5 rounded-full inline-flex items-center justify-center gap-2 mt-auto">
+          Pedir por WhatsApp
+        </a>
+      </div>
     `;
     return card;
   }
